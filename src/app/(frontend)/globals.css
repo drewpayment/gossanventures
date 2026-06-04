@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cloud text-ink font-sans antialiased;
+  }
+
+  /* Offset anchored sections for the sticky header. */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  ::selection {
+    @apply bg-teal text-white;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-container px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-teal-500;
+  }
+
+  .heading-display {
+    @apply font-display font-semibold tracking-[-0.01em] text-ink;
+  }
+
+  /* Subtle topographic / contour texture echoing the "gossan" geology theme. */
+  .bg-contours {
+    background-image: radial-gradient(circle at 1px 1px, rgba(28, 95, 110, 0.06) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+}
