@@ -38,12 +38,27 @@ npm start        # serve the production build
 Optional: `cp .env.example .env` and set `NEXT_PUBLIC_SITE_URL` for correct
 absolute URLs in SEO/OG metadata.
 
-## Contact form
+## Contact form (Resend)
 
-The form (`src/app/actions.ts`) validates input and logs submissions
-server-side. To actually deliver leads, wire in an email provider
-(Resend/SendGrid), a form service (Formspree), or a webhook — see the `TODO`
-in that file.
+The form (`src/app/actions.ts`) emails submissions via [Resend](https://resend.com).
+Set these env vars in production (and in `.env` locally to test real sending):
+
+- `RESEND_API_KEY` — your Resend API key
+- `LEAD_TO_EMAIL` — inbox that receives enquiries
+- `LEAD_FROM_EMAIL` — a verified sender, e.g. `Gossan Ventures <leads@yourdomain.com>`
+
+Without `RESEND_API_KEY`, submissions are logged server-side and the form still
+returns success (handy for local dev). The lead's email is set as `reply-to`, so
+you can reply directly from your inbox.
+
+## SEO
+
+- `src/app/sitemap.ts` → `/sitemap.xml` (all pages incl. services + articles)
+- `src/app/robots.ts` → `/robots.txt`
+- JSON-LD structured data: Organization + WebSite (sitewide), Service + FAQ +
+  Breadcrumb (service pages), BlogPosting + Breadcrumb (articles)
+
+Set `NEXT_PUBLIC_SITE_URL` so canonical/OG/sitemap URLs are absolute and correct.
 
 ## Deploy to Vercel
 

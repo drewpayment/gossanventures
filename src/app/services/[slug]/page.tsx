@@ -5,7 +5,9 @@ import { PageHero } from '@/components/page-hero'
 import { CtaBand } from '@/components/sections/cta-band'
 import { Icon } from '@/components/icon'
 import { ButtonLink } from '@/components/ui'
+import { JsonLd } from '@/components/json-ld'
 import { getRelatedServices, getService, services } from '@/lib/services'
+import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/seo'
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }))
@@ -39,6 +41,17 @@ export default async function ServiceDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          serviceSchema(service),
+          faqSchema(service.faqs),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' },
+            { name: service.title, path: `/services/${service.slug}` },
+          ]),
+        ]}
+      />
       <PageHero
         eyebrow={service.title}
         title={service.heroHeadline}

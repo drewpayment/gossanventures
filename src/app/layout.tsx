@@ -3,7 +3,9 @@ import { Fraunces, Inter } from 'next/font/google'
 import './globals.css'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+import { JsonLd } from '@/components/json-ld'
 import { siteSettings } from '@/lib/site'
+import { organizationSchema, websiteSchema } from '@/lib/seo'
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -61,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body className="min-h-screen bg-cloud">
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <SiteHeader companyName={siteSettings.companyName} />
         <main>{children}</main>
         <SiteFooter settings={siteSettings} />

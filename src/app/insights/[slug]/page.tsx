@@ -2,12 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { CtaBand } from '@/components/sections/cta-band'
+import { JsonLd } from '@/components/json-ld'
 import {
   formatInsightDate,
   getInsight,
   getRelatedInsights,
   insights,
 } from '@/lib/insights'
+import { articleSchema, breadcrumbSchema } from '@/lib/seo'
 
 export function generateStaticParams() {
   return insights.map((post) => ({ slug: post.slug }))
@@ -41,6 +43,16 @@ export default async function InsightPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          articleSchema(post),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Insights', path: '/insights' },
+            { name: post.title, path: `/insights/${post.slug}` },
+          ]),
+        ]}
+      />
       <article>
         {/* Header */}
         <header className="relative overflow-hidden border-b border-teal-100 bg-gradient-to-b from-seafoam-soft via-cloud to-cloud">
