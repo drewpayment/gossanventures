@@ -46,7 +46,6 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: siteSettings.companyName,
     type: 'website',
-    images: [{ url: '/brand/gossan-logo.jpg', width: 1206, height: 1192, alt: siteSettings.companyName }],
   },
   twitter: {
     card: 'summary_large_image',
