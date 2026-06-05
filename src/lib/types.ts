@@ -12,12 +12,9 @@ export type IconName =
   | 'layers'
   | 'anchor'
 
-export interface Service {
-  title: string
-  slug?: string
-  icon: IconName
-  summary: string
-  features: string[]
+export interface Stat {
+  value: string
+  label: string
 }
 
 export interface Industry {
@@ -45,11 +42,6 @@ export interface CaseStudy {
   challenge: string
   solution: string
   metrics: Metric[]
-}
-
-export interface Stat {
-  value: string
-  label: string
 }
 
 export interface Differentiator {
@@ -97,4 +89,56 @@ export interface HomeContent {
     body: string
     buttonLabel: string
   }
+}
+
+/* ---------- Services ---------- */
+
+export interface ServiceCapability {
+  title: string
+  description: string
+}
+
+export interface Faq {
+  question: string
+  answer: string
+}
+
+export interface ServiceDetail {
+  slug: string
+  icon: IconName
+  title: string
+  /** Short label used in nav/cards. */
+  tagline: string
+  /** One- or two-sentence card description. */
+  summary: string
+  heroHeadline: string
+  heroSubhead: string
+  overview: string[]
+  capabilities: ServiceCapability[]
+  outcomes: Stat[]
+  faqs: Faq[]
+  related: string[]
+}
+
+/* ---------- Insights ---------- */
+
+export type InsightCategory = 'Cost' | 'Strategy' | 'Operations' | 'Market'
+
+export interface InsightSection {
+  heading?: string
+  paragraphs?: string[]
+  bullets?: string[]
+}
+
+export interface Insight {
+  slug: string
+  title: string
+  excerpt: string
+  category: InsightCategory
+  date: string
+  author: string
+  role: string
+  readMinutes: number
+  body: InsightSection[]
+  related?: string[]
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { BrandLockup } from './brand-mark'
 import type { SiteSettings } from '@/lib/types'
 
@@ -5,19 +6,20 @@ const FOOTER_NAV = [
   {
     title: 'Capabilities',
     links: [
-      { label: 'Freight Brokerage', href: '#services' },
-      { label: 'Managed Transportation', href: '#services' },
-      { label: 'Supply Chain Consulting', href: '#services' },
-      { label: 'Freight Audit & Procurement', href: '#services' },
+      { label: 'Freight Brokerage', href: '/services/freight-brokerage' },
+      { label: 'Managed Transportation', href: '/services/managed-transportation' },
+      { label: 'Supply Chain Consulting', href: '/services/supply-chain-consulting' },
+      { label: 'Freight Audit & Procurement', href: '/services/freight-audit' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'Why Gossan', href: '#why' },
-      { label: 'Our Process', href: '#process' },
-      { label: 'Industries', href: '#industries' },
-      { label: 'Results', href: '#results' },
+      { label: 'Why Gossan', href: '/#why' },
+      { label: 'Our Process', href: '/#process' },
+      { label: 'Industries', href: '/#industries' },
+      { label: 'Insights', href: '/insights' },
+      { label: 'About', href: '/about' },
     ],
   },
 ]
@@ -51,9 +53,9 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
               <ul className="flex flex-col gap-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-sm text-seafoam-light/75 transition-colors hover:text-white">
+                    <Link href={link.href} className="text-sm text-seafoam-light/75 transition-colors hover:text-white">
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

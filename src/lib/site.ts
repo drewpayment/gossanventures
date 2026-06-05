@@ -2,18 +2,16 @@ import type {
   CaseStudy,
   HomeContent,
   Industry,
-  Service,
   SiteSettings,
   Testimonial,
 } from './types'
 
 /**
- * Default content. This is what renders before the CMS is connected, and it
- * also serves as a fallback for any section an editor leaves empty. Treat it
- * as the canonical "seed" copy for Gossan Ventures.
+ * Single source of truth for site-wide and homepage content.
+ * Edit copy, stats, and contact details here.
  */
 
-export const defaultSiteSettings: SiteSettings = {
+export const siteSettings: SiteSettings = {
   companyName: 'Gossan Ventures',
   legalName: 'Gossan Ventures LLC',
   tagline: 'Enterprise logistics capability. Boutique accountability.',
@@ -24,7 +22,7 @@ export const defaultSiteSettings: SiteSettings = {
   linkedinUrl: '',
 }
 
-export const defaultHome: HomeContent = {
+export const home: HomeContent = {
   hero: {
     eyebrow: 'Logistics & Supply Chain Advisory',
     headingLead: 'The signals are already in your supply chain.',
@@ -32,9 +30,9 @@ export const defaultHome: HomeContent = {
     subheading:
       'Gossan Ventures gives mid-market shippers the capabilities of a national 3PL — without the bureaucracy. Senior-led, transparent, and accountable to your numbers.',
     primaryCtaLabel: 'Get a free freight assessment',
-    primaryCtaHref: '#contact',
+    primaryCtaHref: '/contact',
     secondaryCtaLabel: 'Explore capabilities',
-    secondaryCtaHref: '#services',
+    secondaryCtaHref: '/services',
   },
   trustStats: [
     { value: '$2B+', label: 'freight under management, career' },
@@ -115,62 +113,7 @@ export const defaultHome: HomeContent = {
   },
 }
 
-export const defaultServices: Service[] = [
-  {
-    title: 'Freight Brokerage (FTL/LTL)',
-    slug: 'freight-brokerage',
-    icon: 'truck',
-    summary:
-      'Reliable capacity for full-truckload and less-than-truckload freight, sourced from a vetted carrier bench and matched to your lanes, timelines, and service standards.',
-    features: [
-      'Dry van, reefer, flatbed & specialized equipment',
-      'Spot coverage and contracted lane commitments',
-      'Carrier vetting, insurance & safety screening',
-      'Real-time tracking and proactive exception management',
-    ],
-  },
-  {
-    title: 'Managed Transportation',
-    slug: 'managed-transportation',
-    icon: 'network',
-    summary:
-      'Outsource the day-to-day running of your transportation function. We operate as an extension of your team — planning, tendering, tracking, and reporting end to end.',
-    features: [
-      'Dedicated routing guide design & enforcement',
-      'TMS setup, integration & carrier onboarding',
-      'Daily tender management and track-and-trace',
-      'KPI dashboards and quarterly business reviews',
-    ],
-  },
-  {
-    title: 'Supply Chain Consulting',
-    slug: 'supply-chain-consulting',
-    icon: 'compass',
-    summary:
-      'Strategic advisory that fixes the network, not just the next load — from distribution footprint and mode optimization to carrier strategy and resilience planning.',
-    features: [
-      'Network & distribution-center modeling',
-      'Mode optimization and lane rationalization',
-      'Carrier strategy & RFP / bid management',
-      'Risk, resilience & contingency planning',
-    ],
-  },
-  {
-    title: 'Freight Audit & Procurement',
-    slug: 'freight-audit',
-    icon: 'clipboard',
-    summary:
-      'Stop overpaying. We audit every invoice against contracted rates, recover what you are owed, and run disciplined procurement events that lock in durable savings.',
-    features: [
-      'Line-item invoice audit & overcharge recovery',
-      'Accessorial and fuel-surcharge validation',
-      'Competitive RFP design and rate benchmarking',
-      'Contract negotiation and award optimization',
-    ],
-  },
-]
-
-export const defaultIndustries: Industry[] = [
+export const industries: Industry[] = [
   {
     name: 'Food & Beverage',
     icon: 'truck',
@@ -203,31 +146,28 @@ export const defaultIndustries: Industry[] = [
   },
 ]
 
-export const defaultTestimonials: Testimonial[] = [
+export const testimonials: Testimonial[] = [
   {
     quote:
       'We moved off a national broker and never looked back. Same capacity, far better communication, and we can actually see where our money goes.',
     author: 'Operations Director',
     role: 'Regional Food Distributor',
-    company: '',
   },
   {
     quote:
       'Gossan rebuilt our routing guide and ran a clean bid. We took 19% out of our outbound freight in one quarter without touching service.',
     author: 'VP of Supply Chain',
     role: 'Consumer Products Manufacturer',
-    company: '',
   },
   {
     quote:
       'They treat our freight like it’s their own business. When something goes sideways, I hear about it from them before it becomes my problem.',
     author: 'Logistics Manager',
     role: 'Industrial Equipment Maker',
-    company: '',
   },
 ]
 
-export const defaultCaseStudies: CaseStudy[] = [
+export const caseStudies: CaseStudy[] = [
   {
     title: 'Rebuilding a broken outbound network',
     client: 'Regional food & beverage distributor',

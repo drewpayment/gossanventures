@@ -1,74 +1,55 @@
 # Gossan Ventures — Marketing Site
 
 Marketing site for **Gossan Ventures LLC**, a senior-led logistics & supply chain
-advisory and freight brokerage. Built with **Next.js (App Router)**, **Tailwind CSS**,
-and **Payload CMS 3** (MongoDB), deployable to **Vercel**.
+advisory and freight brokerage. Built with **Next.js (App Router)** and **Tailwind CSS**,
+deployable to **Vercel**.
 
-## Architecture
+## Pages
 
-One Next.js app, two route groups:
+| Route | Description |
+| --- | --- |
+| `/` | Home — hero, trust stats, services, why-us, process, industries, results, about, contact |
+| `/services` | Capabilities overview |
+| `/services/[slug]` | Service detail (freight brokerage, managed transportation, supply chain consulting, freight audit) |
+| `/insights` | Articles listing |
+| `/insights/[slug]` | Individual article |
+| `/about` | The Gossan story + values |
+| `/contact` | Contact form + details |
 
-- `src/app/(frontend)` — the public marketing site.
-- `src/app/(payload)` — the Payload admin UI (`/admin`) and REST/GraphQL API.
+## Content
 
-All page copy is editable in the CMS. Until a database is connected, the site
-renders polished **default content** from `src/lib/defaults.ts`, so it always looks
-complete.
+All copy lives in plain TypeScript modules under `src/lib/` — no CMS or database:
 
-### What's editable in `/admin`
+- `src/lib/site.ts` — company details, homepage copy, stats, differentiators, process, industries, testimonials, case studies
+- `src/lib/services.ts` — service definitions (powers cards + detail pages)
+- `src/lib/insights.ts` — articles
 
-| Area | Type | Location |
-| --- | --- | --- |
-| Hero, trust stats, differentiators, process, closing CTA | Global | **Home Page** |
-| Company name, contact details, tagline | Global | **Site Settings** |
-| Services (FTL/LTL, Managed, Consulting, Audit) | Collection | **Services** |
-| Industries | Collection | **Industries** |
-| Testimonials | Collection | **Testimonials** |
-| Case studies | Collection | **Case Studies** |
-| Contact-form submissions | Collection | **Leads** (Inbox) |
+Edit those files to change content; pages are statically generated at build time.
 
-## Local development
-
-1. Copy env and fill it in:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   - `PAYLOAD_SECRET` — `openssl rand -base64 32`
-   - `DATABASE_URI` — a MongoDB connection string (local or MongoDB Atlas)
-
-2. Install and run:
-
-   ```bash
-   npm install
-   npm run dev
-   ```
-
-3. Open:
-   - Site → http://localhost:3000
-   - CMS → http://localhost:3000/admin (create the first admin user on first visit)
-
-> The site runs **without** a database too — it just serves the default content
-> and the contact form is disabled until `DATABASE_URI` / `PAYLOAD_SECRET` are set.
-
-## Useful scripts
+## Develop
 
 ```bash
-npm run dev                # start dev server
-npm run build              # production build
-npm run generate:types     # regenerate src/payload-types.ts from collections
-npm run generate:importmap # regenerate the admin import map (after adding custom components)
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm start        # serve the production build
 ```
 
-## Deploying to Vercel
+Optional: `cp .env.example .env` and set `NEXT_PUBLIC_SITE_URL` for correct
+absolute URLs in SEO/OG metadata.
 
-1. Push to GitHub and import the repo in Vercel.
-2. Add environment variables in the Vercel project:
-   - `PAYLOAD_SECRET`
-   - `DATABASE_URI` (MongoDB Atlas connection string)
-   - `NEXT_PUBLIC_SITE_URL` (your production URL)
-3. Deploy. Visit `/admin` to create the first user and start editing.
+## Contact form
+
+The form (`src/app/actions.ts`) validates input and logs submissions
+server-side. To actually deliver leads, wire in an email provider
+(Resend/SendGrid), a form service (Formspree), or a webhook — see the `TODO`
+in that file.
+
+## Deploy to Vercel
+
+1. Push to GitHub and import the repo in Vercel (framework auto-detected).
+2. Set `NEXT_PUBLIC_SITE_URL` to your production URL.
+3. Deploy.
 
 ## Brand
 

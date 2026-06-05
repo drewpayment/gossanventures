@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState } from 'react'
-import { submitLead, type LeadState } from '@/app/(frontend)/actions'
+import { submitLead, type LeadState } from '@/app/actions'
 
 const initialState: LeadState = { status: 'idle' }
 

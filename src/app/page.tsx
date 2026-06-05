@@ -7,28 +7,10 @@ import { Industries } from '@/components/sections/industries'
 import { Results } from '@/components/sections/results'
 import { About } from '@/components/sections/about'
 import { Contact } from '@/components/sections/contact'
-import {
-  getCaseStudies,
-  getHome,
-  getIndustries,
-  getServices,
-  getSiteSettings,
-  getTestimonials,
-} from '@/lib/content'
+import { caseStudies, home, industries, siteSettings, testimonials } from '@/lib/site'
+import { services } from '@/lib/services'
 
-// Content is CMS-driven; render per request so edits appear without a rebuild.
-export const dynamic = 'force-dynamic'
-
-export default async function HomePage() {
-  const [home, settings, services, industries, testimonials, caseStudies] = await Promise.all([
-    getHome(),
-    getSiteSettings(),
-    getServices(),
-    getIndustries(),
-    getTestimonials(),
-    getCaseStudies(),
-  ])
-
+export default function HomePage() {
   return (
     <>
       <Hero hero={home.hero} />
@@ -43,7 +25,7 @@ export default async function HomePage() {
       <Industries industries={industries} />
       <Results testimonials={testimonials} caseStudies={caseStudies} />
       <About />
-      <Contact cta={home.cta} settings={settings} />
+      <Contact cta={home.cta} settings={siteSettings} />
     </>
   )
 }
